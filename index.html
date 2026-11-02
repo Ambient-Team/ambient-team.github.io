@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ambient Core</title>
+    <meta
+      name="description"
+      content="Governed data products — open-source foundation anyone can rebuild."
+    />
+    <link rel="canonical" href="https://ambient-team.github.io/" />
+    <meta property="og:url" content="https://ambient-team.github.io/" />
+    <meta property="og:title" content="Ambient Core" />
+    <meta
+      property="og:description"
+      content="Governed data products — open-source foundation anyone can rebuild."
+    />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <button type="button" class="skip-link">Skip to main content</button>
+
+    <div class="top-banner" role="region" aria-label="Commercial product notice">
+      <span id="commercial-banner-text">
+        Looking for the commercial version? Visit
+        <a id="commercial-banner-link" href="https://www.ambientsystems.ai"
+          >www.ambientsystems.ai</a
+        >
+      </span>
+    </div>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <p class="wordmark" data-i18n="hero.title">Ambient Core</p>
+        <div class="lang-rail">
+          <details class="lang-picker">
+            <summary class="lang-picker__summary">
+              <span class="visually-hidden" data-i18n="switcher.label">Language</span
+              ><span id="lang-summary-endonym" lang="en">English</span>
+            </summary>
+            <ul class="lang-picker__panel" id="lang-panel"></ul>
+          </details>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <h1 id="hero-title" data-i18n="hero.title">Ambient Core</h1>
+          <p class="hero-lead" data-i18n="hero.description">
+            Governed data products — open-source foundation anyone can rebuild.
+          </p>
+          <div class="cta">
+            <a
+              class="btn primary"
+              href="https://github.com/Ambient-Team/ambient-core"
+              data-i18n="cta.contribute"
+              >Contribute</a
+            >
+            <button type="button" class="btn secondary" id="hero-start" data-i18n="cta.start">
+              Start
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section content-section--first" aria-labelledby="what-it-is">
+        <div class="container prose-block">
+          <h2 id="what-it-is">What it is</h2>
+          <p>
+            Ambient Core is the governed data-product substrate for teams that want versioned YAML
+            contracts, a reference metrics catalog, and pipeline governance in one MIT-licensed,
+            fully open-source tree. It is not an agent framework and does not provide
+            customer-facing AI, model hosting, or inference orchestration.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="what-you-get">
+        <div class="container prose-block">
+          <h2 id="what-you-get">What you get</h2>
+          <ul>
+            <li>
+              <strong>Contracts</strong> — versioned data-product YAML under <code>contracts/</code>,
+              validated and bundled for libraries.
+            </li>
+            <li>
+              <strong>Catalog</strong> — industries, metrics, and benchmarks with manifest
+              generation for runtime reference data.
+            </li>
+            <li>
+              <strong>Pipeline</strong> — Colab/pandas Bronze→Silver→Gold plus optional Spark/Delta
+              helpers in <code>lib/ambient_pipeline/</code>.
+            </li>
+            <li>
+              <strong>Libraries</strong> — <code>ambient_contracts</code>,
+              <code>ambient_cli</code>, and <code>ambient_calc</code> for validation, catalog
+              tooling, and formulas.
+            </li>
+            <li>
+              A Colab entry notebook (<code>notebooks/00_colab_run_me.ipynb</code>) and CI-ready
+              packaging — no sample data or hosted storage is included in the repository.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="scope">
+        <div class="container prose-block">
+          <h2 id="scope">Scope</h2>
+          <p>
+            You run pipelines and store data on your own infrastructure. The commercial Ambient
+            Systems product (see the banner above) provides hosted storage, tenancy, billing, and
+            managed product surfaces — none of that lives in this open-source core. Integrators
+            should pin a release tag (currently <strong>v0.3.11</strong>) rather than floating
+            <code>main</code>.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section" id="start" aria-labelledby="start-heading">
+        <div class="container prose-block">
+          <h2 id="start-heading">Start</h2>
+          <p>
+            Package version <strong>0.3.11</strong> (tag <strong>v0.3.11</strong>). Use
+            <strong>Python 3.10–3.12</strong>. Spark tests require <strong>Java 17+</strong> with
+            <code>JAVA_HOME</code> set when running <code>AMBIENT_SPARK_TESTS=1</code>.
+          </p>
+          <pre class="code-block">git clone https://github.com/Ambient-Team/ambient-core.git
+cd ambient-core
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -e &quot;.[all]&quot;
+cp contracts/*.yaml lib/ambient_contracts/bundled/
+validate-contracts
+AMBIENT_SPARK_TESTS=1 pytest</pre>
+          <p>
+            Free Colab path: open <code>notebooks/00_colab_run_me.ipynb</code> from the tagged
+            release (Open in Colab), supply your own CSVs under <code>data/raw/</code>, and run
+            Bronze→Silver→Gold with pandas — no paid Databricks or cloud hosting required for the
+            core demo.
+          </p>
+          <p>
+            For local Spark runs outside pytest, set <code>AMBIENT_PII_SALT</code> to a unique
+            non-empty value (see <code>.env.example</code>); the pseudonymizer blocks missing or
+            placeholder salts in production paths.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="releases">
+        <div class="container">
+          <h2 id="releases">Releases</h2>
+          <p class="prose-block">
+            This project follows Keep a Changelog and Semantic Versioning. Highlights from recent
+            tags:
+          </p>
+          <ul class="release-list">
+            <li>
+              <h3>v0.3.11</h3>
+              <p>
+                Spark pipeline E2E golden tests, <code>AMBIENT_PII_SALT</code> runtime policy,
+                structured pipeline logging, expanded CI quality gates, and
+                <code>lib/ambient_pipeline/</code> coverage floors — current recommended pin.
+              </p>
+            </li>
+            <li>
+              <h3>v0.3.8</h3>
+              <p>
+                Tag-driven GitHub Release workflow, maintainer cut-release automation, and
+                releasing documentation for downstream integrators.
+              </p>
+            </li>
+            <li>
+              <h3>v0.3.0</h3>
+              <p>
+                Baseline semver release: governed contracts, reference catalog, ambient_pipeline,
+                ambient_calc, ambient_cli, and CI validation for contracts, catalog, and Spark
+                tests.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="license">
+        <div class="container prose-block">
+          <h2 id="license">License</h2>
+          <p>
+            Ambient Core is released under the MIT License. You may use, copy, modify, merge,
+            publish, and distribute the software, including commercially, provided you include the
+            copyright notice and license text shipped with the source.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/i18n.js"></script>
+    <script src="assets/site.js"></script>
+  </body>
+</html>
